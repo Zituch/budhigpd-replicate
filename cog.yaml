@@ -15,9 +15,5 @@ build:
     - sentencepiece==0.1.99
     - huggingface-hub==0.20.3
 
-  environment:
-    TRANSFORMERS_CACHE: /src/.cache/huggingface
-    HF_HOME: /src/.cache/huggingface
-    TOKENIZERS_PARALLELISM: "false"
-
+# ONLY THIS LINE FOR PREDICT
 predict: "predict.py:Predictor"
