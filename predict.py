@@ -6,6 +6,11 @@ from typing import Iterator
 from transformers import AutoModelForCausalLM, AutoTokenizer, TextIteratorStreamer
 from threading import Thread
 
+# ⚠️ ADD THESE ENVIRONMENT VARIABLES - REQUIRED FOR Replicate
+os.environ["TRANSFORMERS_CACHE"] = "/src/.cache/huggingface"
+os.environ["HF_HOME"] = "/src/.cache/huggingface"
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
+
 # Global cache
 _model = None
 _tokenizer = None
