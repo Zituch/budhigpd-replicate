@@ -1,75 +1,23 @@
-# cog.yaml - Optimized for BudhiGPD 3B on Replicate
 build:
   gpu: true
   cuda: "12.1"
   python_version: "3.10"
-  
+
   system_packages:
-    - "libgl1-mesa-glx"
-    - "libglib2.0-0"
-  
+    - libgl1-mesa-glx
+    - libglib2.0-0
+
   python_packages:
-    - "torch==2.2.1"
-    - "transformers==4.38.0"
-    - "accelerate==0.26.1"
-    - "bitsandbytes==0.42.0"
-    - "sentencepiece==0.1.99"
-    - "huggingface-hub==0.20.3"
+    - torch==2.2.1
+    - transformers==4.38.0
+    - accelerate==0.26.1
+    - bitsandbytes==0.42.0
+    - sentencepiece==0.1.99
+    - huggingface-hub==0.20.3
 
-environment:
-  TRANSFORMERS_CACHE: "/src/.cache/huggingface"
-  HF_HOME: "/src/.cache/huggingface"
-  TOKENIZERS_PARALLELISM: "false"
+  environment:
+    TRANSFORMERS_CACHE: /src/.cache/huggingface
+    HF_HOME: /src/.cache/huggingface
+    TOKENIZERS_PARALLELISM: "false"
 
-predict:
-  input:
-    prompt:
-      type: string
-      description: "Your message to BudhiGPD"
-      default: "Hello, who are you?"
-    
-    max_length:
-      type: integer
-      description: "Maximum tokens to generate"
-      default: 512
-      min: 50
-      max: 2048
-    
-    temperature:
-      type: float
-      description: "Creativity (0.1-1.0)"
-      default: 0.7
-      min: 0.1
-      max: 1.0
-    
-    top_p:
-      type: float
-      description: "Focus (0.0-1.0)"
-      default: 0.9
-      min: 0.0
-      max: 1.0
-    
-    repetition_penalty:
-      type: float
-      description: "Avoid repetition (1.0-2.0)"
-      default: 1.05
-      min: 1.0
-      max: 2.0
-    
-    do_sample:
-      type: bool
-      description: "Use sampling"
-      default: true
-    
-    stream:
-      type: bool
-      description: "Stream response"
-      default: false
-  
-  output: string
-  
-  resources:
-    memory: "8G"
-    gpu_count: 1
-  
-  timeout: 120
+predict: "predict.py:Predictor"
