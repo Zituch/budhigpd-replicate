@@ -1,19 +1,22 @@
 build:
   gpu: true
-  cuda: "12.1"
+  cuda: "11.8"
   python_version: "3.10"
-
-  system_packages:
-    - libgl1-mesa-glx
-    - libglib2.0-0
-
   python_packages:
-    - torch==2.2.1
-    - transformers==4.38.0
-    - accelerate==0.26.1
-    - bitsandbytes==0.42.0
-    - sentencepiece==0.1.99
-    - huggingface-hub==0.20.3
+    - "torch==2.1.2"  # ✅ Pin specific version for stability
+    - "transformers==4.36.2"
+    - "accelerate==0.25.0"
+    - "numpy==1.24.4"  # ✅ CRITICAL: Pin to NumPy 1.x (not 2.x)
+    - "sentencepiece"
+    - "protobuf==3.20.3"  # ✅ Pin protobuf to avoid conflicts
+    - "einops"
+    - "hf-transfer"
+    - "tokenizers==0.15.0"
+    - "huggingface-hub==0.20.3"
+    - "scipy"
+    - "xformers==0.0.23"  # ✅ Add xformers for efficiency
+  system_packages:
+    - "git"
+    - "build-essential"
 
-# ONLY THIS LINE FOR PREDICT
 predict: "predict.py:Predictor"
